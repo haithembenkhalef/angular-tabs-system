@@ -3,8 +3,6 @@ import {Message,MessageService} from 'primeng/api';
 import { PrimeNGConfig} from 'primeng/api';                  //api
 import { ItemComponent } from './comp.model';
 import { DynamicCompDirective } from './dynamic-comp.directive';
-import { TabComponent } from './tab/tab.component';
-import { TabsComponent } from './tabs/tabs.component';
 
 
 @Component({
@@ -15,7 +13,6 @@ import { TabsComponent } from './tabs/tabs.component';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild(TabsComponent) tabs!: TabsComponent;
   
   activeState: boolean[] = [true, false, false];
 
@@ -25,9 +22,6 @@ export class AppComponent implements OnInit {
     
   }
 
-  createTab() {
-    this.tabs.createTab();
-  }
 
 
 }
