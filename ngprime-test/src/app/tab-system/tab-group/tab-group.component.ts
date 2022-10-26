@@ -56,9 +56,12 @@ export class TabGroupComponent implements OnInit {
   }
 
   destroy(key: any) {
-    let newKey =  this.manager.getPreviousTab(key);
-    this.setActive(newKey);
+    let newKey =  this.manager.getNextTab(key);
+    if(newKey) this.setActive(newKey);
+    let content = this.manager.findRef(key)
+    this.manager.remove(key);
     key.destroy();
+    content.destroy();
 }
 
 

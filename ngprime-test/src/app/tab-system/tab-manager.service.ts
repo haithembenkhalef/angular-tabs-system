@@ -34,12 +34,13 @@ export class TabManagerService {
     this.tabsRef.delete(key);
   }
 
-  getPreviousTab(key: any) {
+  getNextTab(key: any) {
    let tabs = Array.from(this.tabsRef.keys());
    let index = tabs.findIndex(element=>element.instance.tab.id === key.instance.tab.id);
-   if(index - 1 >= 0) 
+   if(index > 0 ) 
     return tabs[index - 1];
-    else return tabs[index + 1];
+   else 
+    return tabs[index + 1] ? tabs[index + 1] : null;
   }
 
 
