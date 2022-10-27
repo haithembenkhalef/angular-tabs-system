@@ -43,7 +43,7 @@ export class TabGroupComponent implements OnInit {
       tabRefContent.instance.content = tabRef.instance.tab.label+" : "+ tabRef.instance.tab.id;
       this.manager.addRef(tabRef, tabRefContent);
       this.setActive(tabRef);
-      setTimeout(() => this.scrollToElement(), 500); // 2500 is millisecond
+      if(this.checkOverflow()) setTimeout(() => this.scrollToElement(), 500);
     }
   }
 
