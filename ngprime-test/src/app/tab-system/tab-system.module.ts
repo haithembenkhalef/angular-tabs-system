@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TabItemComponent } from './tab-item/tab-item.component';
 import { TabGroupComponent } from './tab-group/tab-group.component';
 import { TabContentComponent } from './tab-content/tab-content.component';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -13,7 +14,8 @@ import { TabContentComponent } from './tab-content/tab-content.component';
     TabContentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ButtonModule
   ],
   exports: [
     TabGroupComponent,

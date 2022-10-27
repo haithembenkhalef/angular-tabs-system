@@ -16,8 +16,10 @@ export class TabGroupComponent implements OnInit {
 
   @ViewChild('vcr', {read: ViewContainerRef}) vcr!: ViewContainerRef;
 
+  @ViewChild('scroller', { read: ViewContainerRef, static: true }) 
+  scroller!: ViewContainerRef;
 
-  tabRefs: Tab[] = [];
+
 
   constructor(private manager: TabManagerService) { }
 
@@ -41,6 +43,7 @@ export class TabGroupComponent implements OnInit {
       tabRefContent.instance.content = tabRef.instance.tab.label+" : "+ tabRef.instance.tab.id;
       this.manager.addRef(tabRef, tabRefContent);
       this.setActive(tabRef);
+      setTimeout(() => this.scrollToElement(), 500); // 2500 is millisecond
     }
   }
 
@@ -63,6 +66,29 @@ export class TabGroupComponent implements OnInit {
     key.destroy();
     content.destroy();
 }
+
+scrollRight() {
+  this.scroller.element.nativeElement.scroll({ left: (this.scroller.element.nativeElement.scrollLeft + 130), behavior: 'smooth' });
+}
+
+scrollLeft() {
+  this.scroller.element.nativeElement.scroll({ left: (this.scroller.element.nativeElement.scrollLeft - 130), behavior: 'smooth' });
+}
+
+public checkOverflow(): boolean {
+  return  this.scroller.element.nativeElement.offsetWidth < this.scroller.element.nativeElement.scrollWidth;
+}
+
+  scrollToEnd() {
+    this.scroller.element.nativeElement.scroll({ left: (this.scroller.element.nativeElement.scrollWidth), behavior: 'smooth' });
+  }
+
+  scrollToElement() {
+    let tabRef = this.manager.getActiveTab();
+    if(tabRef)
+      tabRef.location.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
 
 
 }

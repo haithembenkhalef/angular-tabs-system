@@ -25,7 +25,6 @@ import { TabSystemModule } from './tab-system/tab-system.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    TabViewModule,
     ButtonModule,
     MessageModule,
     MenubarModule,

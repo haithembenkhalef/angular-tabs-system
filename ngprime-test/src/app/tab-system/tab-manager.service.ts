@@ -43,5 +43,12 @@ export class TabManagerService {
     return tabs[index + 1] ? tabs[index + 1] : null;
   }
 
+  getActiveTab() {
+    let tabs = Array.from(this.tabsRef.keys());
+    return tabs.find(element => 
+      element.instance.tab.active === true
+     );
+  }
+
 
 }
