@@ -36,7 +36,7 @@ export class TabGroupComponent implements OnInit {
         this.setActive(tabRef)
       });
       tabRef.instance.close.subscribe((data)=>{
-          this.disableAll();
+         
           this.destroy(tabRef);
       })
       const tabRefContent = this.vcrTab.createComponent(TabContentComponent);
@@ -59,8 +59,11 @@ export class TabGroupComponent implements OnInit {
   }
 
   destroy(key: any) {
-    let newKey =  this.manager.getNextTab(key);
-    if(newKey) this.setActive(newKey);
+    if(key.instance.tab.active) {
+      this.disableAll();
+      let newKey =  this.manager.getNextTab(key);
+      if(newKey) this.setActive(newKey);
+    }
     let content = this.manager.findRef(key)
     this.manager.remove(key);
     key.destroy();
